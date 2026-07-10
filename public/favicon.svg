@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">LinerV favicon iteration 2</title>
+  <rect x="4" y="4" width="56" height="56" rx="15" fill="#08231C"/>
+  <path d="M17 20H28C32.418 20 36 23.582 36 28V28" stroke="#C8F06A" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M17 44H28C32.418 44 36 40.418 36 36V36" stroke="#C8F06A" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M36 32H47" stroke="#C8F06A" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M43 25L50 32L43 39" stroke="#C8F06A" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="17" cy="20" r="3.2" fill="#F8FAF6"/>
+  <circle cx="17" cy="44" r="3.2" fill="#F8FAF6"/>
+  <circle cx="36" cy="32" r="5" fill="#FFB547" stroke="#08231C" stroke-width="2.4"/>
+</svg>

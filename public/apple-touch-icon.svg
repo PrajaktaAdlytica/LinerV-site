@@ -1,0 +1,11 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">LinerV app icon iteration 2</title>
+  <rect width="180" height="180" rx="42" fill="#08231C"/>
+  <path d="M48 57H78C93.464 57 106 69.536 106 85V85" stroke="#C8F06A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M48 123H78C93.464 123 106 110.464 106 95V95" stroke="#C8F06A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M106 90H137" stroke="#C8F06A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M129 71L150 90L129 109" stroke="#C8F06A" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="48" cy="57" r="9" fill="#F8FAF6"/>
+  <circle cx="48" cy="123" r="9" fill="#F8FAF6"/>
+  <circle cx="106" cy="90" r="16" fill="#FFB547" stroke="#08231C" stroke-width="7"/>
+</svg>

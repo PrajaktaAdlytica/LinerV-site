@@ -1,0 +1,12 @@
+<svg width="168" height="168" viewBox="0 0 168 168" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LinerV flow-merge mark</title>
+  <desc id="desc">Two factory data streams merge through a bottleneck node into one action path.</desc>
+  <rect x="16" y="16" width="136" height="136" rx="36" fill="#08231C"/>
+  <path d="M45 51H72C83.598 51 93 60.402 93 72V72" stroke="#C8F06A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M45 101H72C83.598 101 93 91.598 93 80V80" stroke="#C8F06A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M93 76H118" stroke="#C8F06A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M111 61L128 76L111 91" stroke="#C8F06A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="45" cy="51" r="7" fill="#F8FAF6"/>
+  <circle cx="45" cy="101" r="7" fill="#F8FAF6"/>
+  <circle cx="93" cy="76" r="12" fill="#FFB547" stroke="#08231C" stroke-width="5"/>
+</svg>

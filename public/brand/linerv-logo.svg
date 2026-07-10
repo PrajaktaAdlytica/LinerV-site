@@ -1,0 +1,13 @@
+<svg width="760" height="168" viewBox="0 0 760 168" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LinerV logo iteration 2</title>
+  <desc id="desc">LinerV wordmark with a flow-merge mark representing connected line events, shift handoffs, and bottleneck action.</desc>
+  <rect x="16" y="16" width="136" height="136" rx="36" fill="#08231C"/>
+  <path d="M45 51H72C83.598 51 93 60.402 93 72V72" stroke="#C8F06A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M45 101H72C83.598 101 93 91.598 93 80V80" stroke="#C8F06A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M93 76H118" stroke="#C8F06A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M111 61L128 76L111 91" stroke="#C8F06A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="45" cy="51" r="7" fill="#F8FAF6"/>
+  <circle cx="45" cy="101" r="7" fill="#F8FAF6"/>
+  <circle cx="93" cy="76" r="12" fill="#FFB547" stroke="#08231C" stroke-width="5"/>
+  <text x="184" y="111" fill="#08231C" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="78" font-weight="800" letter-spacing="-1">LinerV</text>
+</svg>
