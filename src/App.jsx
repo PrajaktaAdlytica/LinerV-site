@@ -279,12 +279,16 @@ function useGsapScrollMotion() {
           );
         });
 
-        gsap.to("[data-parallax='hero-visual']", {
-          yPercent: -7,
-          rotate: 0.5,
-          ease: "none",
-          scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true },
-        });
+        const heroVisual = document.querySelector("[data-parallax='hero-visual']");
+        const heroSection = document.querySelector(".hero-section");
+        if (heroVisual && heroSection) {
+          gsap.to(heroVisual, {
+            yPercent: -7,
+            rotate: 0.5,
+            ease: "none",
+            scrollTrigger: { trigger: heroSection, start: "top top", end: "bottom top", scrub: true },
+          });
+        }
 
         cleanup = () => {
           ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -533,12 +537,16 @@ function Nav() {
       node.scrollIntoView({ behavior: "smooth" });
       return;
     }
+    if (window.location.pathname !== "/") {
+      window.location.href = `/#${id}`;
+      return;
+    }
     window.location.hash = id;
   };
 
   return (
     <header className={`site-nav ${scrolled ? "is-compact" : ""}`} data-glass data-glass-scale="-54">
-      <a className="brand-link" href="#top" aria-label="LinerV home" onClick={() => setOpen(false)}>
+      <a className="brand-link" href="/" aria-label="LinerV home" onClick={() => setOpen(false)}>
         <img src="/brand/linerv-mark.svg" alt="" />
         <span>LinerV</span>
       </a>
@@ -557,6 +565,7 @@ function Nav() {
           </div>
         ))}
         <button onClick={() => jump("pricing")}>Pricing</button>
+        <a className="nav-news-link" href="/news/funding-announcement">News</a>
       </nav>
       <button className="nav-menu" onClick={() => setOpen((value) => !value)} aria-expanded={open}>
         Menu
@@ -572,9 +581,82 @@ function Nav() {
               {id === "proof" ? "Resources" : id[0].toUpperCase() + id.slice(1)}
             </button>
           ))}
+          <a href="/news/funding-announcement" onClick={() => setOpen(false)}>News</a>
         </div>
       )}
     </header>
+  );
+}
+
+function FundingAnnouncementSection() {
+  return (
+    <section className="funding-announcement-section" aria-labelledby="funding-announcement-title" data-reveal>
+      <div className="container funding-announcement-card" data-glass>
+        <div className="funding-record">
+          <p className="eyebrow">Funding announcement</p>
+          <time dateTime="2025-09-04">Sep 4, 2025</time>
+        </div>
+        <div className="funding-copy">
+          <h2 id="funding-announcement-title">LinerV secures $500K in funding from Dlabs.</h2>
+          <p>LinerV is part of Dlabs’ global portfolio of companies building manufacturing operations for complex operating environments.</p>
+          <div className="funding-actions">
+            <a className="primary-btn" href="/news/funding-announcement">Read announcement</a>
+            <a className="text-link" href="https://d-labs-site.vercel.app/companies" target="_blank" rel="noreferrer noopener">View Dlabs portfolio <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FundingAnnouncementPage() {
+  useEffect(() => {
+    const previousTitle = document.title;
+    const description = document.querySelector('meta[name="description"]');
+    const previousDescription = description?.getAttribute("content");
+    document.title = "LinerV secures $500K in funding from Dlabs | LinerV";
+    description?.setAttribute("content", "LinerV has secured $500K in funding from Dlabs. Announcement dated Sep 4, 2025.");
+    return () => {
+      document.title = previousTitle;
+      if (description && previousDescription) description.setAttribute("content", previousDescription);
+    };
+  }, []);
+
+  return (
+    <main id="top" className="announcement-page">
+      <Nav />
+      <article className="announcement-article">
+        <header className="container announcement-hero">
+          <div className="announcement-meta">
+            <p className="eyebrow">Funding announcement</p>
+            <time dateTime="2025-09-04">Sep 4, 2025</time>
+          </div>
+          <h1>LinerV secures $500K in funding from Dlabs.</h1>
+          <p className="announcement-lede">LinerV is part of Dlabs’ global portfolio of companies building manufacturing operations for complex operating environments.</p>
+          <a className="primary-btn" href="https://d-labs-site.vercel.app/companies" target="_blank" rel="noreferrer noopener">View Dlabs portfolio</a>
+        </header>
+        <section className="announcement-record-section">
+          <div className="container announcement-record" data-glass>
+            <div><span>Company</span><strong>LinerV</strong></div>
+            <div><span>Sector</span><strong>Manufacturing operations</strong></div>
+            <div><span>Backed by</span><strong>Dlabs</strong></div>
+            <div><span>Funding</span><strong>$500K</strong></div>
+          </div>
+        </section>
+        <section className="container announcement-links" aria-labelledby="company-links-title">
+          <div>
+            <p className="eyebrow">Company record</p>
+            <h2 id="company-links-title">Official LinerV profiles and portfolio record.</h2>
+          </div>
+          <div className="announcement-link-list">
+            <a href="https://d-labs-site.vercel.app/companies" target="_blank" rel="noreferrer noopener"><span>Dlabs portfolio</span><span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/company/linerv/" target="_blank" rel="noreferrer noopener"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
+            <a href="https://www.crunchbase.com/organization/linerv" target="_blank" rel="noreferrer noopener"><span>Crunchbase</span><span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+      </article>
+      <Footer />
+    </main>
   );
 }
 
@@ -954,29 +1036,35 @@ function Footer() {
   const footerGroups = [
     ["Product", [["Overview", "top"], ["Board", "board"], ["Shift", "shift"], ["Bottleneck", "bottleneck"]]],
     ["Solutions", [["Food", "segments"], ["Automotive", "segments"], ["Machinery", "segments"], ["Chemicals", "segments"]]],
-    ["Resources", [["Proof", "proof"], ["Pricing", "pricing"], ["Demo", "demo"], ["Sign in", "signin"]]],
+    ["Resources", [["Proof", "proof"], ["Pricing", "pricing"], ["News", "/news/funding-announcement"], ["Demo", "demo"]]],
     ["Company", [["About", "about"], ["Contact", "about"], ["Security", "proof"], ["Demo", "demo"]]],
   ];
 
   return (
     <footer className="site-footer">
+      <div className="container footer-credibility" aria-label="LinerV company credentials">
+        <strong>Backed by Dlabs</strong>
+        <span>$500K funding</span>
+        <a href="https://d-labs-site.vercel.app/companies" target="_blank" rel="noreferrer noopener">Dlabs portfolio ↗</a>
+        <a href="https://www.linkedin.com/company/linerv/" target="_blank" rel="noreferrer noopener">LinkedIn ↗</a>
+        <a href="https://www.crunchbase.com/organization/linerv" target="_blank" rel="noreferrer noopener">Crunchbase ↗</a>
+      </div>
       <div className="container footer-grid">
         <div>
-          <a className="footer-logo-link" href="#top" aria-label="LinerV home">
+          <a className="footer-logo-link" href="/" aria-label="LinerV home">
             <img src="/brand/linerv-logo-dark.svg" alt="LinerV" />
           </a>
           <p>One operating picture for every line, every shift, every constraint.</p>
           <div className="social-row" aria-label="Social links">
-            {["in", "x", "yt", "gh"].map((item) => (
-              <a href="#top" key={item}>{item}</a>
-            ))}
+            <a href="https://www.linkedin.com/company/linerv/" target="_blank" rel="noreferrer noopener" aria-label="LinerV on LinkedIn">in</a>
+            <a href="https://www.crunchbase.com/organization/linerv" target="_blank" rel="noreferrer noopener" aria-label="LinerV on Crunchbase">cb</a>
           </div>
         </div>
         {footerGroups.map(([group, links]) => (
           <div className="footer-list" key={group}>
             <strong>{group}</strong>
-            {links.map(([label, hash]) => (
-              <a href={`#${hash}`} key={label}>{label}</a>
+            {links.map(([label, destination]) => (
+              <a href={destination.startsWith("/") ? destination : `/#${destination}`} key={label}>{label}</a>
             ))}
           </div>
         ))}
@@ -1231,6 +1319,8 @@ function HomePage() {
 
       <TrustedBy />
 
+      <FundingAnnouncementSection />
+
       <section className="problem-section" data-reveal>
         <div className="container">
           <div className="section-heading problem-heading">
@@ -1402,6 +1492,11 @@ export function App() {
   useGsapScrollMotion();
   const hash = useHashRoute();
   const product = products.find((item) => item.slug === hash);
+  const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
+
+  if (pathname === "/news/funding-announcement") {
+    return <FundingAnnouncementPage />;
+  }
 
   if (hash === "signin") {
     return <SignInPage />;

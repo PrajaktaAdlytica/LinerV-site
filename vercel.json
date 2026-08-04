@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/news/funding-announcement",
+      "destination": "/index.html"
+    }
+  ]
+}
