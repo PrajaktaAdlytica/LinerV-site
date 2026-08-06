@@ -90,6 +90,80 @@ const blockers = [
   ["Throughput", "Where capacity is leaking", "Shows up too late", "Ranks the constraint before it becomes the shift story."],
 ];
 
+const ENTRY_FILM_SESSION_KEY = "linerv-entry-film-seen-v1";
+
+function EntryFilm({ open, onClose }) {
+  const videoRef = useRef(null);
+  const [leaving, setLeaving] = useState(false);
+  const [muted, setMuted] = useState(true);
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    videoRef.current?.play().catch(() => {});
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
+  if (!open) return null;
+
+  const dismiss = () => {
+    if (leaving) return;
+    setLeaving(true);
+    try {
+      window.sessionStorage.setItem(ENTRY_FILM_SESSION_KEY, "true");
+    } catch {
+      // Session storage can be unavailable in privacy-restricted browsers.
+    }
+    window.setTimeout(onClose, 480);
+  };
+
+  const toggleSound = () => {
+    const nextMuted = !muted;
+    setMuted(nextMuted);
+    if (videoRef.current) {
+      videoRef.current.muted = nextMuted;
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  return (
+    <div
+      className={`entry-film ${leaving ? "is-leaving" : ""}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label="LinerV factory film"
+    >
+      <video
+        ref={videoRef}
+        className="entry-film-video"
+        src="/brand/linerv-entry.mp4"
+        autoPlay
+        muted={muted}
+        playsInline
+        preload="auto"
+        onEnded={dismiss}
+        onError={dismiss}
+      />
+      <div className="entry-film-shade" aria-hidden="true" />
+      <div className="entry-film-brand">
+        <img src="/brand/linerv-logo.svg" alt="LinerV" />
+        <span>Factory operations, connected</span>
+      </div>
+      <div className="entry-film-controls" data-glass>
+        <button type="button" onClick={toggleSound} aria-label={muted ? "Turn sound on" : "Turn sound off"}>
+          {muted ? "Sound on" : "Sound off"}
+        </button>
+        <button type="button" onClick={dismiss}>Skip film</button>
+      </div>
+    </div>
+  );
+}
+
 const customerLogos = [
   ["Bosch", "https://cdn.simpleicons.org/bosch/08231C"],
   ["Siemens", "https://cdn.simpleicons.org/siemens/08231C"],
@@ -1256,6 +1330,14 @@ function ProductPage({ product }) {
 
 function HomePage() {
   const [activeProduct, setActiveProduct] = useState(1);
+  const [showEntryFilm, setShowEntryFilm] = useState(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+    try {
+      return window.sessionStorage.getItem(ENTRY_FILM_SESSION_KEY) !== "true";
+    } catch {
+      return true;
+    }
+  });
   const active = products[activeProduct];
   const productCards = useMemo(
     () =>
@@ -1278,6 +1360,7 @@ function HomePage() {
 
   return (
     <main id="top">
+      {showEntryFilm ? <EntryFilm open onClose={() => setShowEntryFilm(false)} /> : null}
       <Nav />
 
       <section className="hero-section">
@@ -1292,6 +1375,9 @@ function HomePage() {
             <div className="hero-actions">
               <a className="primary-btn" href="#demo">Book a demo</a>
               <a className="secondary-btn" href="#platform">Explore platform</a>
+              <button className="text-btn" type="button" onClick={() => setShowEntryFilm(true)}>
+                Replay film
+              </button>
             </div>
             <div className="hero-stats" aria-label="Product proof points">
               <div>
