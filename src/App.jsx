@@ -897,7 +897,7 @@ function IntegrationsSection() {
 
 function TestimonialsSection() {
   return (
-    <section className="testimonials-section" data-reveal>
+    <section className="testimonials-section" id="proof" data-reveal>
       <div className="container">
         <div className="section-heading">
           <p className="eyebrow">Operator trust</p>
@@ -905,8 +905,15 @@ function TestimonialsSection() {
         </div>
         <div
           className="testimonial-grid"
-          onMouseOver={(event) => event.currentTarget.classList.add("is-paused")}
+          aria-label="Manufacturing operator testimonials"
+          onMouseEnter={(event) => event.currentTarget.classList.add("is-paused")}
           onMouseLeave={(event) => event.currentTarget.classList.remove("is-paused")}
+          onFocus={(event) => event.currentTarget.classList.add("is-paused")}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              event.currentTarget.classList.remove("is-paused");
+            }
+          }}
         >
           <div className="testimonial-track">
             {testimonials.map(([quote, name, role]) => (
