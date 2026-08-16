@@ -988,7 +988,10 @@ function AboutSection() {
           </p>
           <div className="contact-card" data-glass>
             <strong>LinerV Labs sp. z o.o.</strong>
-            <span>Warsaw, Poland</span>
+            <span>7728 South Close</span>
+            <span>Luxembourg City, LU 1124</span>
+            <span>Luxembourg</span>
+            <a href="tel:+336325524">Phone: 336 325 524</a>
             <a href="mailto:hello@linerv.io">hello@linerv.io</a>
           </div>
         </div>
@@ -1152,7 +1155,10 @@ function Footer() {
         <div className="footer-contact">
           <strong>Contact</strong>
           <span>LinerV Labs sp. z o.o.</span>
-          <span>Warsaw, Poland</span>
+          <span>7728 South Close</span>
+          <span>Luxembourg City, LU 1124</span>
+          <span>Luxembourg</span>
+          <a href="tel:+336325524">Phone: 336 325 524</a>
           <a href="mailto:hello@linerv.io">hello@linerv.io</a>
         </div>
       </div>
