@@ -988,10 +988,12 @@ function AboutSection() {
           </p>
           <div className="contact-card" data-glass>
             <strong>LinerV Labs sp. z o.o.</strong>
-            <span>7728 South Close</span>
-            <span>Luxembourg City, LU 1124</span>
-            <span>Luxembourg</span>
-            <a href="tel:+336325524">Phone: 336 325 524</a>
+            <span>580 Canterbury Square</span>
+            <span>Provo, UT 84603</span>
+            <span>United States</span>
+            <span>Lat: 40.2334</span>
+            <span>Lng: -111.6517</span>
+            <a href="tel:+18018329497">Phone: (801) 832-9497</a>
             <a href="mailto:hello@linerv.io">hello@linerv.io</a>
           </div>
         </div>
@@ -1155,10 +1157,12 @@ function Footer() {
         <div className="footer-contact">
           <strong>Contact</strong>
           <span>LinerV Labs sp. z o.o.</span>
-          <span>7728 South Close</span>
-          <span>Luxembourg City, LU 1124</span>
-          <span>Luxembourg</span>
-          <a href="tel:+336325524">Phone: 336 325 524</a>
+          <span>580 Canterbury Square</span>
+          <span>Provo, UT 84603</span>
+          <span>United States</span>
+          <span>Lat: 40.2334</span>
+          <span>Lng: -111.6517</span>
+          <a href="tel:+18018329497">Phone: (801) 832-9497</a>
           <a href="mailto:hello@linerv.io">hello@linerv.io</a>
         </div>
       </div>
